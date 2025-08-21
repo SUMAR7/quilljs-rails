@@ -18,7 +18,12 @@ class Quilljs::RailsFunctionalityTest < Minitest::Test
       created_rails = true
     end
     # Ensure Rails::Engine exists so the engine class can inherit from it
-    ::Rails.const_set(:Engine, Class.new) unless defined?(::Rails::Engine)
+    unless defined?(::Rails::Engine)
+      engine_stub = Class.new do
+        def self.initializer(*); end
+      end
+      ::Rails.const_set(:Engine, engine_stub)
+    end
 
     load File.expand_path('../../lib/quilljs/rails.rb', __dir__)
 
@@ -63,6 +68,15 @@ class Quilljs::RailsFunctionalityTest < Minitest::Test
       path = File.expand_path("../../#{rel}", __dir__)
       content = File.read(path)[0, 200]
       assert_includes content, marker, "#{rel} should indicate updated Quill #{marker}"
+    end
+  end
+
+  def test_engine_adds_assets_to_precompile
+    path = File.expand_path('../../lib/quilljs/rails.rb', __dir__)
+    content = File.read(path)
+    assert_includes content, 'assets.precompile', 'Engine should append assets to precompile list'
+    %w[quill.core.css quill.snow.css quill.bubble.css quill.min.js quill.core.js quill.global.js].each do |asset|
+      assert_includes content, asset, "Engine precompile list should include #{asset}"
     end
   end
 end
