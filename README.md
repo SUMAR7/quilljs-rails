@@ -1,7 +1,6 @@
-# Quilljs::Rails
+# Quilljs2::Rails
 
-[![Gem Version](https://badge.fury.io/rb/quilljs-rails.svg)](https://badge.fury.io/rb/quilljs-rails)
-[![Gem](https://img.shields.io/gem/dt/quilljs-rails.svg)](https://rubygems.org/gems/quilljs-rails)
+[Note] This is a maintained fork of the original quilljs-rails by Abhinav Mathur, updated to support Quill 2.x (via CDN recommended).
 
 This gem adds a Quill rich editor to an existing text field or text area.
 [Quill - Your powerful, rich text editor](http://quilljs.com/)
@@ -10,7 +9,7 @@ This gem adds a Quill rich editor to an existing text field or text area.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'quilljs-rails', :git => 'git://github.com/abhinavmathur/quilljs-rails.git'
+gem 'quilljs2-rails'
 ```
 
 And then execute:
@@ -23,8 +22,8 @@ And then execute:
 ### From CDN(recommended)
 Add these lines in the head section of application.html.erb
 
-    <script src="https://cdn.quilljs.com/1.1.9/quill.js"></script>
-    <link href="https://cdn.quilljs.com/1.1.9/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/2.0.3/quill.js"></script>
+    <link href="https://cdn.quilljs.com/2.0.3/quill.snow.css" rel="stylesheet">
 Then add this line to your application.js file
 
 ```ruby
@@ -100,7 +99,7 @@ remove other quill themes and add
     
 Make sure to add `theme: 'bubble'` in the `Quilljs.setDefaults` setting as explained above.
 
-This gem also comes with the latest `quill.min.js` and `quill.core.js`.
+Note: The bundled local assets have been updated to Quill 2.0.3. You can use them directly via Sprockets (see "From the gem"), although using the official CDN is still recommended for most apps. Use the CDN links above to load Quill 2.0.3.
 
 This gem can also be used in conjuction with [bootstrap maxlength](https://mimo84.github.io/bootstrap-maxlength/).
 
@@ -117,7 +116,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/abhinavmathur/quilljs-rails.
+This gem is a fork of https://github.com/abhinavmathur/quilljs-rails. Bug reports and pull requests are welcome on GitHub.
 
 
 ## License

@@ -48,7 +48,7 @@
                     }
 
                     // Event listener to make sure we copy the new content of the Quill back into the field
-                    window['quill-container-' + index].on('editor-change', function () {
+                    window['quill-container-' + index].on('text-change', function () {
                         debounce_html(input_field, current_quill_container);
                     });
 

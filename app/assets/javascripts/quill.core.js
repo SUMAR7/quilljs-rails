@@ -1,5 +1,5 @@
 /*!
- * Quill Editor v1.2.0
+ * Quill Editor v2.0.3
  * https://quilljs.com/
  * Copyright (c) 2014, Jason Chen
  * Copyright (c) 2013, salesforce.com
