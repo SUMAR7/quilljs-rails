@@ -1,0 +1,36 @@
+name: Release gem
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write  # Required for RubyGems Trusted Publishing (OIDC)
+
+jobs:
+  build-test-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Run tests
+        run: bundle exec rake test
+
+      # This action builds the gem from the gemspec and publishes it to RubyGems.
+      # It supports Trusted Publishing via GitHub OIDC (no API key needed) when
+      # the gem is configured on RubyGems to trust this repository.
+      - name: Publish to RubyGems (Trusted Publishing)
+        uses: rubygems/release-gem@v1
+        if: github.event_name == 'release'
+        # If you prefer using an API key instead of Trusted Publishing, add a repo
+        # secret RUBYGEMS_API_KEY and uncomment the following lines:
+        # with:
+        #   rubygems_api_key: ${{ secrets.RUBYGEMS_API_KEY }}
