@@ -22,8 +22,8 @@ And then execute:
 ### From CDN(recommended)
 Add these lines in the head section of application.html.erb
 
-    <script src="https://cdn.quilljs.com/2.0.3/quill.js"></script>
-    <link href="https://cdn.quilljs.com/2.0.3/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet">
 Then add this line to your application.js file
 
 ```ruby
@@ -99,7 +99,12 @@ remove other quill themes and add
     
 Make sure to add `theme: 'bubble'` in the `Quilljs.setDefaults` setting as explained above.
 
-Note: The bundled local assets have been updated to Quill 2.0.3. You can use them directly via Sprockets (see "From the gem"), although using the official CDN is still recommended for most apps. Use the CDN links above to load Quill 2.0.3.
+Note: The bundled local assets have been updated to Quill 2.0.3. You can use them directly via Sprockets (see "From the gem"), although using a CDN is still recommended for most apps. For CDN, use jsDelivr (example above) or unpkg for slab/quill@2.0.3.
+
+### Turbo/Hotwire notes
+- The initializer listens for `ready`, `page:change`, `turbolinks:load`, and `turbo:load` events.
+- Editors are initialized per field using a data attribute, so repeated navigations or partial updates will not double-initialize existing editors.
+- Ensure you are not including any old Quill 1.x assets in your app. Remove old CDN links or packs that could override the 2.0.3 assets.
 
 This gem can also be used in conjuction with [bootstrap maxlength](https://mimo84.github.io/bootstrap-maxlength/).
 

@@ -1,6 +1,6 @@
 module Quilljs
   module Rails
     # Gem version follows the bundled/editor major version for clarity
-    VERSION = "2.1.1"
+    VERSION = "2.1.2"
   end
 end

@@ -87,14 +87,17 @@
             var quill_container = $('.quill_container');
             if (quill_container.length > 0) {
                 quill_container.each(function (index, object) {
-                    return create_quill_containers(index, object)
+                    if ($(object).data('quill-initialized')) { return; }
+                    create_quill_containers(index, object);
+                    $(object).data('quill-initialized', true);
                 });
             }
         }
     };
 
-    $( document ).on('ready page:change turbolinks:load', function() {
-        if ($('.ql-editor').length <= 0){
+    $( document ).on('ready page:change turbolinks:load turbo:load', function() {
+        var pending = $('.quill_container').filter(function(){ return !$(this).data('quill-initialized'); });
+        if (pending.length > 0){
             Quilljs.loadDefaults();
         }
     });
