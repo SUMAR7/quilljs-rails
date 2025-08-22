@@ -13,4 +13,10 @@ class Quilljs::RailsTest < Minitest::Test
     assert_includes readme, 'maintained fork of the original quilljs-rails', 'README should mention this is a fork of the original'
     assert_includes readme, "gem 'quilljs2-rails'", 'README installation should use the new gem name'
   end
+
+  def test_default_require_file_exists
+    # Ensure requiring by gem name works in host apps
+    assert require('quilljs2-rails'), 'Requiring quilljs2-rails should succeed'
+    assert defined?(::Quilljs::Rails), 'Quilljs::Rails should be defined after requiring the gem entrypoint'
+  end
 end
