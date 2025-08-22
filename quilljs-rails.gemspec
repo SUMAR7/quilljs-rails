@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Sajjad Umar"]
   spec.email         = ["sajjadumardev@gmail.com"]
 
-  spec.summary       = %q{Rails assets and helper for Quill rich text editor (2.x support)}
-  spec.description   = 'Maintained fork of abhinavmathur/quilljs-rails updated for Quill 2.x (via CDN recommended). Provides a global initializer and includes legacy Quill 1.x assets for Sprockets.'
+  spec.summary       = %q{Rails assets and helper for Quill rich text editor (2.x, TypeScript-authored upstream)}
+  spec.description   = 'Maintained fork of abhinavmathur/quilljs-rails updated for Quill 2.x. Upstream is authored in TypeScript; this gem vendors the official dist (UMD) assets for Sprockets and provides a small global initializer. For modern bundlers and TypeScript, prefer installing quill from npm.'
   spec.homepage      = 'https://github.com/sumar7/quilljs-rails'
   spec.license       = "MIT"
   spec.files         = `git ls-files`.split("\n")
